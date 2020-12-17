@@ -1,0 +1,362 @@
+/* Import some font */
+@import url('https://fonts.googleapis.com/css?family=Work+Sans:400,700');
+
+
+/**
+  Some Variables
+*/
+
+:root {
+  --red:#FF1515 ;
+  --black: #000000;
+  --white: #FFFFFF;
+  --logo-size: 55px;
+  --logo-size2: 45px;
+  --grid-gap: 30px;
+  --font-size-link: 1.25em;
+  --font-normal: 'Work Sans', sans-serif;
+  --font-blog-header: Georgia, Serif;
+
+}
+
+
+/* 
+  ALL HTML STUFF
+ */
+
+
+html {
+  box-sizing: border-box;
+  margin: 0;
+  height: 100%;
+  font-family: var(--font-normal);
+  font-weight: normal;
+  color: var(--black);
+
+  /* Image Background for HTML */
+  background: url(pines.svg);
+  background-position: center bottom;
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position: 0 50vh;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+/* 
+  Body
+*/
+
+
+body {
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-rows: [menu-start]min-content [menu-end main-start] 1fr [main-end];
+  grid-template-columns: [margin-col-1] 1fr [col-start] 10fr [col-end margin-col-2] 1fr [margin-col-2-end];
+
+}
+
+/* 
+  Link styling 
+*/
+
+a {
+  font-size: var(--font-size-link);
+  padding-bottom: 5px;
+  font-weight: 800;
+  text-align: center;
+  text-decoration: none;
+  color: black;
+  }
+
+
+.menu a:hover {
+  color: var(--red);
+  border-bottom: 3px solid var(--red);
+  transition: all 0.2s;
+}
+
+
+/* 
+  Menu Icon 
+*/
+
+.header .menu-icon {
+  opacity: 0;
+  cursor: pointer;
+  display: inline-flex;
+  padding: 28px 20px;
+  position: relative;
+  user-select: none;
+}
+
+.header .menu-icon .navicon {
+  background: var(--red);
+  display: block;
+  height: 2px;
+  position: relative;
+  transition: background .2s ease-out;
+  width: 20px;
+}
+
+/* Transitions for the menu-button */
+.header .menu-icon .navicon:before,
+.header .menu-icon .navicon:after {
+  background: var(--red);
+  content: '';
+  display: block;
+  height: 100%;
+  position: absolute;
+  transition: all .2s ease-out;
+  width: 100%;
+}
+.header .menu-icon .navicon:before {
+  top: 5px;
+}
+
+.header .menu-icon .navicon:after {
+  top: -5px;
+}
+
+
+/* Fun 
+Animations */
+
+/* Checkbox display none */
+.header .menu-btn {
+  display: none;
+}
+
+/* checkbox movement */
+.header .menu-btn:checked ~ .menu {
+  max-height: 240px;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon {
+  background: transparent;
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:before {
+  transform: rotate(-45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon .navicon:after {
+  transform: rotate(45deg);
+}
+
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:before,
+.header .menu-btn:checked ~ .menu-icon:not(.steps) .navicon:after {
+  top: 0;
+}
+
+.logo:hover {
+  transform: rotate(375deg);
+  transition: 0.75s;
+}
+
+
+ /* 
+ Header / Menu / Navigation 
+ */
+
+
+.header {
+  display: grid;
+  z-index: 3;
+  grid-column: col-start / col-end;
+  grid-template-columns: [hamburger-start] min-content [menu-start] 1fr [menu-end logo-start] min-content [logo-end]; 
+  padding: 0 8em 0 8em;
+}
+
+.menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style-type: none;
+  overflow: hidden;
+  grid-column: menu-start / menu-end
+}
+
+.menu-item {
+  width: 100%;
+  /* margin-right: 2em; */
+  /* margin-left: 2em; */
+}
+
+
+.logo {
+  max-width: var(--logo-size);
+  transform: rotate(15deg);
+}
+
+.logo-div {
+  align-self: center;
+  grid-column: logo-start / logo-end;
+}
+
+
+
+/* 
+  Main 
+*/
+
+
+.main-content {
+  grid-row: main-start / main-end;
+  grid-column: col-start / col-end;
+  display: grid;
+  grid-template-columns:  1fr 1fr;
+}
+
+  .profile-pic-div {
+    max-width: 400px;
+    justify-self: center;
+    align-self: start;
+  }
+  .profile-pic {
+    width: 100%;
+    border-radius: 20px;
+  }
+
+/* 
+  Section Description (Part of main)
+*/
+
+.description {
+  display: flex;
+  flex-direction: column;
+
+}
+  .description-title {
+    margin: 0;
+    font-weight: 700;
+    font-size: 3em ;
+  }
+
+  .description-info {
+    margin: 0;
+    padding-top: 10px;
+    font-size: 1.5em;
+  }
+
+/* 
+  Background-Image 
+*/
+
+.pines-div {
+  display: none;
+}
+
+.pines {
+  width: 100%;
+}
+
+
+/* 
+  MEDIA QUERIES
+  ALL HAIL Responsiveness!
+*/
+
+
+/* Big screen TV Size tho */
+
+@media (min-width: 1600px) {
+
+  body {
+    justify-content: center;
+  }
+
+  .profile-pic-div {
+    max-width: 500px;
+  }
+
+}
+
+
+/* Squish size */
+
+@media (max-width: 1175px) {
+
+  .main-content {
+    grid-gap: 25px;
+  }
+
+  .description-title {
+    font-size: 2.30em;
+    line-height: 1.25em;
+    margin: 0;
+  }
+
+  .description-info {
+    padding: 0;
+    margin: 0;
+  }
+
+  .logo-div {
+    display: inline-flex;
+  }
+}
+
+
+/* Squish size 2 */
+
+@media (max-width: 975px) {
+  .header {
+    padding: 0;
+  }
+}
+
+
+/* Tablet Size for the hot moms -> One column  */
+
+@media (max-width: 775px) {
+  /* We going straight drop down in this bitch */
+.header .menu {
+  max-height: 0;
+  transition: max-height .2s ease-out;
+  flex-direction: column;
+  justify-self: center;
+  padding: 0;
+  padding-bottom: 10px;
+  max-height: .2s ease-out;
+}
+
+  .header .menu-icon {
+    opacity: 100;
+  }
+
+  .menu-item {
+    padding: 20px 20px 0 0;
+  }
+
+  /* Only one column view */
+  .main-content {
+    grid-template-columns: 1fr;
+  }
+
+  .description-title {
+    margin-bottom: var(--grid-gap);
+    margin-top: var(--grid-gap);
+  }
+
+  /* Image is in the bottom now */
+  html {
+    background: none;
+
+  }
+  .pines-div {
+    grid-column: col-start / col-end;
+    display: flex;
+    justify-content: center;
+    grid-row: -1;
+
+  }
+}
+
